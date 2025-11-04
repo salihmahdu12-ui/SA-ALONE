@@ -1,0 +1,175 @@
+local player = game.Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+
+gui.ResetOnSpawn = false
+
+gui.Name = "MapSelectUI"
+
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local background = Instance.new("ImageLabel")
+
+background.Size = UDim2.new(1, 0, 1, 0)
+
+background.Position = UDim2.new(1, 0, 0, 0)
+
+background.Image = ""
+
+background.ScaleType = Enum.ScaleType.Crop
+
+background.BackgroundTransparency = 1
+
+background.ZIndex = 0
+
+background.Parent = gui
+
+local container = Instance.new("Frame")
+
+container.Size = UDim2.new(0, 380, 0, 230) 
+
+container.Position = UDim2.new(0.5, -195, 0.5, -115)
+
+container.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+
+container.BackgroundTransparency = 0.2
+
+container.BorderSizePixel = 0
+
+container.ZIndex = 2
+
+container.Parent = gui
+
+local containerCorner = Instance.new("UICorner", container)
+
+containerCorner.CornerRadius = UDim.new(0, 20)
+
+local glow = Instance.new("Frame")
+
+glow.Size = UDim2.new(1.015, 0, 1.015, 0)
+
+glow.Position = UDim2.new(-0.0075, 0, -0.0075, 0)
+
+glow.BackgroundColor3 = Color3.fromRGB(255,255,255)
+
+glow.BackgroundTransparency = 0.7
+
+glow.ZIndex = 1
+
+glow.Parent = container
+
+local glowCorner = Instance.new("UICorner", glow)
+
+glowCorner.CornerRadius = UDim.new(0, 20)
+
+task.spawn(function()
+
+	while true do		for i = 0.7, 0.5, -0.02 do
+
+			glow.BackgroundTransparency = i
+
+			task.wait(0.05)
+
+		end
+
+		for i = 0.5, 0.7, 0.02 do
+
+			glow.BackgroundTransparency = i
+
+			task.wait(0.05)
+
+		end
+
+	end
+
+end)
+
+local title = Instance.new("TextLabel")
+
+title.Text = "اختار الماب 🤍"
+
+title.Font = Enum.Font.GothamBold
+
+title.TextSize = 22
+
+title.TextColor3 = Color3.fromRGB(255,255,255)
+
+title.BackgroundTransparency = 1
+
+title.Size = UDim2.new(1, 0, 0, 40)
+
+title.Position = UDim2.new(0, 0, 0.019, 0)
+
+title.ZIndex = 3
+
+title.Parent = container
+
+local function createButton(text, yPos)
+
+	local button = Instance.new("TextButton")
+
+	button.Text = text
+
+	button.Font = Enum.Font.GothamBold
+
+	button.TextSize = 20
+
+	button.TextColor3 = Color3.new(0,0,0)
+
+	button.BackgroundColor3 = Color3.fromRGB(255,255,255)
+
+	button.Size = UDim2.new(0, 340, 0, 45)
+
+	button.Position = UDim2.new(0.5, -170, yPos, 0)
+
+	button.ZIndex = 3
+
+	button.Parent = container
+
+	local c = Instance.new("UICorner", button)
+
+	c.CornerRadius = UDim.new(0,10)
+
+	return button
+
+end
+
+local bombMap = createButton("ماب القنبلة 💣", 0.25)
+
+local robberyMap = createButton("ماب السرقة 🤑", 0.48)
+
+local footer = Instance.new("TextLabel")
+
+footer.Text = "SA | ALONE"
+
+footer.Font = Enum.Font.Gotham
+
+footer.TextSize = 14
+
+footer.TextColor3 = Color3.fromRGB(200,200,200)
+
+footer.BackgroundTransparency = 1
+
+footer.Size = UDim2.new(1,0,0,30)
+
+footer.Position = UDim2.new(0,0,0.82,0)
+
+footer.ZIndex = 3
+
+footer.Parent = container
+
+bombMap.MouseButton1Click:Connect(function()
+
+	gui:Destroy()
+
+	loadstring(game:HttpGet("https://scriptsbinsauth.vercel.app/api/scripts/c5dc2650-6f0a-40f2-8f85-93e74e642485/raw"))()
+
+end)
+
+robberyMap.MouseButton1Click:Connect(function()
+
+	gui:Destroy()
+
+	loadstring(game:HttpGet("https://scriptsbinsauth.vercel.app/api/scripts/937f1c19-6cff-41f7-8c24-334eba192f63/raw"))()
+
+end)
